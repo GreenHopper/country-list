@@ -15,16 +15,20 @@ function getDirectories(srcpath) {
 }
 
 var fileCallback = function(filename, content, language) {
-	combined[language] = JSON.parse(content);
-	count++;
-	if (max === count) {
-		var minified = JSON.stringify(combined);
-		fs.writeFileSync(rootPath + '/allCountries.json', minified , 'utf-8');	
-	}
+  var isoLanguageCode = language.replace('_', '-');
+  var formatJsContent = JSON.parse(content);
+  var formatJs = {};
+  formatJs[isoLanguageCode] = formatJsContent;
+  fs.writeFileSync(rootPath + '/' + language + '/formatJsCountries.json', JSON.stringify(formatJs), 'utf-8');
+  combined[isoLanguageCode] = JSON.parse(content);
+  count++;
+  if (max === count) {
+    fs.writeFileSync(rootPath + '/allCountries.json', JSON.stringify(combined), 'utf-8');
+  }
 };
 
 var errorHandler = function(error) {
-	console.log(error);
+  console.log(error);
 }
 
 // Read all files in a folder
@@ -49,6 +53,6 @@ function readFiles(dirname, language, onFileContent, onError) {
 var dirs = getDirectories(rootPath);
 max = dirs.length;
 for (var i = 0; i < max; i++) {
-	var language = dirs[i];
-	readFiles(rootPath + '/' + language + '/', language, fileCallback, errorHandler);
+  var language = dirs[i];
+  readFiles(rootPath + '/' + language + '/', language, fileCallback, errorHandler);
 }
