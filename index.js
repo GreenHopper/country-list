@@ -53,9 +53,10 @@ function readFiles(dirname, language, onFileContent, onError) {
 var dirs = getDirectories(rootPath);
 max = dirs.length;
 var availableLanguages = {};
-availableLanguages.languages = dirs;
-fs.writeFileSync(rootPath + '/availableLanguages.json', JSON.stringify(availableLanguages), 'utf-8');
+availableLanguages.languages = [];
 for (var i = 0; i < max; i++) {
   var language = dirs[i];
+  availableLanguages.languages.push(dirs[i].replace('_', '-'));
   readFiles(rootPath + '/' + language + '/', language, fileCallback, errorHandler);
 }
+fs.writeFileSync(rootPath + '/availableLanguages.json', JSON.stringify(availableLanguages), 'utf-8');
