@@ -39,6 +39,9 @@ function readFiles(dirname, language, onFileContent, onError) {
       return;
     }
     filenames.forEach(function(filename) {
+      if (filename !== 'country.json') {
+        return;
+      }
       fs.readFile(dirname + filename, 'utf-8', function(err, content) {
         if (err) {
           onError(err);
