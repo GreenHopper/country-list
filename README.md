@@ -5,7 +5,7 @@
     </a>
 </h3>
 <p align="center">
-  <b>country list</b> &bull;
+  &bull; <b>country list</b>
 </p>
 
 Country List
