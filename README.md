@@ -19,7 +19,7 @@ Formats Available
 - JSON
 - JSON in format.js style
 
-This forked reduced the original project down to JSON only. Mainly for easier usage in pure Javascript projects like the [country-select web component](https://github.com/Protoss78/country-select)
+This fork reduced the original project down to JSON only. Mainly for easier usage in pure Javascript projects like the [country-select web component](https://github.com/Protoss78/country-select).
 
 Multilingual
 ------------
